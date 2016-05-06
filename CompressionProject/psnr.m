@@ -1,9 +1,11 @@
 function p = psnr(x,y)
 
-d = mean(mean((x(:)-y(:)).^2));
+err = immse(x,y);
+
 m1 = max(abs(x(:)));
 m2 = max(abs(y(:)));
-m = max(m1,m2);
-p = 10*log10(m^2/d);
+m = max(m1,m2); % max fluctuation in input image data type
+
+p = 10*log10(m^2/err);
 
 end
